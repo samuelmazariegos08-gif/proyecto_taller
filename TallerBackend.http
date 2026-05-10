@@ -1,0 +1,36 @@
+@TallerBackend_HostAddress = http://localhost:5018
+@token = pega_aqui_el_token
+
+POST {{TallerBackend_HostAddress}}/api/auth/primer-admin
+Content-Type: application/json
+
+{
+  "nombre": "Administrador",
+  "username": "admin",
+  "correo": "admin@taller.com",
+  "password": "Admin12345"
+}
+
+###
+
+POST {{TallerBackend_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "usuarioOCorreo": "admin",
+  "password": "Admin12345"
+}
+
+###
+
+GET {{TallerBackend_HostAddress}}/api/roles
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+GET {{TallerBackend_HostAddress}}/api/usuarios
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###

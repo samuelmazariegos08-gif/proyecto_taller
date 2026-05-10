@@ -1,0 +1,20 @@
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Local extracted documents/temp files
+.docx_tmp/
+
+# Environment files
+.env
+appsettings.Local.json
+
+# Logs
+*.log
