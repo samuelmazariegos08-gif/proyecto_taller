@@ -34,3 +34,44 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 ###
+
+GET {{TallerBackend_HostAddress}}/api/vehiculos
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+POST {{TallerBackend_HostAddress}}/api/vehiculos
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "placa": "P123ABC",
+  "marca": "Toyota",
+  "modelo": "Corolla",
+  "anio": 2020,
+  "kilometraje": 45000,
+  "activo": true
+}
+
+###
+
+PUT {{TallerBackend_HostAddress}}/api/vehiculos/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "placa": "P123ABC",
+  "marca": "Toyota",
+  "modelo": "Corolla",
+  "anio": 2020,
+  "kilometraje": 45500,
+  "activo": true
+}
+
+###
+
+PATCH {{TallerBackend_HostAddress}}/api/vehiculos/1/estado?activo=false
+Authorization: Bearer {{token}}
+
+###

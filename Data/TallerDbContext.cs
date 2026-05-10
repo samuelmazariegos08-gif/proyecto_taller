@@ -11,6 +11,7 @@ public class TallerDbContext : DbContext
 
     public DbSet<Rol> Roles => Set<Rol>();
     public DbSet<Usuario> Usuarios => Set<Usuario>();
+    public DbSet<Vehiculo> Vehiculos => Set<Vehiculo>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -49,6 +50,24 @@ public class TallerDbContext : DbContext
                 .WithMany(e => e.Usuarios)
                 .HasForeignKey(e => e.IdRol)
                 .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Vehiculo>(entity =>
+        {
+            entity.ToTable("vehiculo");
+            entity.HasKey(e => e.IdVehiculo);
+
+            entity.Property(e => e.IdVehiculo).HasColumnName("id_vehiculo");
+            entity.Property(e => e.Placa).HasColumnName("placa").HasMaxLength(20).IsRequired();
+            entity.Property(e => e.Marca).HasColumnName("marca").HasMaxLength(80).IsRequired();
+            entity.Property(e => e.Modelo).HasColumnName("modelo").HasMaxLength(80).IsRequired();
+            entity.Property(e => e.Anio).HasColumnName("anio");
+            entity.Property(e => e.Kilometraje).HasColumnName("kilometraje");
+            entity.Property(e => e.Activo).HasColumnName("activo");
+            entity.Property(e => e.CreadoEn).HasColumnName("creado_en");
+            entity.Property(e => e.ActualizadoEn).HasColumnName("actualizado_en");
+
+            entity.HasIndex(e => e.Placa).IsUnique();
         });
     }
 }

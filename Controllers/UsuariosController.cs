@@ -27,10 +27,9 @@ public class UsuariosController : ControllerBase
         var usuarios = await _context.Usuarios
             .Include(u => u.Rol)
             .OrderBy(u => u.IdUsuario)
-            .Select(u => u.ToResponse())
             .ToListAsync();
 
-        return Ok(usuarios);
+        return Ok(usuarios.Select(u => u.ToResponse()));
     }
 
     [HttpGet("{id:int}")]
