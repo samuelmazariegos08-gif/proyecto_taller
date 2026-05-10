@@ -76,8 +76,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    app.UseHttpsRedirection();
+}
 
-app.UseHttpsRedirection();
+app.Lifetime.ApplicationStarted.Register(() =>
+{
+    var urls = app.Urls.Any()
+        ? app.Urls
+        : new[] { "http://localhost:5018" };
+
+    foreach (var url in urls)
+    {
+        Console.WriteLine($"Swagger disponible en: {url.TrimEnd('/')}/swagger");
+    }
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
